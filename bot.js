@@ -34,7 +34,13 @@ function tweetStatus(msg) {
     }
 }
 
-tweetStatus("I really love puppies, but net neutrality is more important right now!");
+//AustinScottGA08
+function follow(list) {
+ return (user) => twit.post('friendships/create', { screen_name: list })
+};
+
+follow(AustinScottGA08);
+//tweetStatus("I really love puppies, but net neutrality is more important right now!");
 
 //=============
 //T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
