@@ -137,5 +137,5 @@ var notifyPolitician = function() {
             }
     });
 }
-//notifyPolitician();
+notifyPolitician();
 setInterval(notifyPolitician, 1000*60*30);
