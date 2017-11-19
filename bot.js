@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
 
 var retweet = function() {
   var params = {
-    q: '#Chicken, #Turkey',
+    q: '#Puppy, #Dog, #Pupper, #Doggo, #Rarepupper',
     result_type: 'recent',
     lang: 'en'    
   };
@@ -39,13 +39,14 @@ var retweet = function() {
             Twitter.post('statuses/retweet/:id', {
                 id: retweetId
             }, function(err, response) {
-                if (response) {
-                    console.log('Retweeted!!!');
-                }
                 // if there was an error while tweeting
                 if (err) {
-                    console.log('Something went wrong while RETWEETING... Duplication maybe...');
+                    console.log('Already retweeted that!');
                 }
+                else if (response) {
+                    console.log('Retweeted!!!');
+                }
+                
             });
         }
         // if unable to Search a tweet
