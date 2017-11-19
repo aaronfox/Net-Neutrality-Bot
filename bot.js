@@ -34,12 +34,18 @@ function tweetStatus(msg) {
     }
 }
 
-//AustinScottGA08
-function follow(list) {
- return (user) => Twitter.post('friendships/create', { screen_name: list })
+// THE FOLLOWING  GOES HERE
+function follow(screen_name) {
+      Twitter.post('friendships/create', {screen_name}, function(err, response){
+        if(err){
+          console.log(err);
+        } else {
+          console.log(screen_name, ': **FOLLOWED**');
+        }
+      });
 };
 
-follow('AustinScottGA08');
+//follow('BennieGThompson');
 //tweetStatus("I really love puppies, but net neutrality is more important right now!");
 
 //=============
@@ -85,6 +91,29 @@ retweet();
 // retweet in every 50 minutes
 setInterval(retweet, 30000);
 
-    
+var fs = require('fs-extra');
+
+function csvHandler(){
+  fs.readFile('115th-Congress-House-seeds.csv', function (err,data) {
+
+  if (err) {
+    return console.log(err);
+  }
+
+  //Convert and store csv information into a buffer. 
+  bufferString = data.toString(); 
+
+  //Store information for each individual person in an array index. Split it by every newline in the csv file. 
+  arr = bufferString.split('\n'); 
+//  console.log(arr); 
+      for (var i = 3; i < arr.length; i++)
+          {
+              console.log('tryna follow ' + arr[i].substr(0, arr[i].length - 1));
+              follow(arr[i].substr(0, arr[i].length - 1));
+          }
+});
+};
+
+//csvHandler();
   
   

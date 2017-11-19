@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.2",
+    "fs-extra": "^4.0.2",
     "twit": "^2.2.9"
   }
 }
