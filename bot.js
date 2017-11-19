@@ -137,7 +137,7 @@ var notifyPolitician = function() {
     //                    console.log(data[i].id + ' ' + data[i].text);
                         // REPLY TO POLITICIAN HERE
                         var hellos = ['Hi', 'Hello', 'Good day'];
-                        var greetings = ['Could I talk to you about net neutrality today? It\s really important to the future of the US.', 'Net Neutrality is one of the most important principles keeping the Internet alive in the US today.', 'I would like to talk about net neutrality and how it\'s vitally important to the US.'];
+                        var greetings = ['Could I talk to you about net neutrality today? It\'s really important to the future of the US.', 'Net Neutrality is one of the most important principles keeping the Internet alive in the US today.', 'I would like to talk about net neutrality and how it\'s vitally important to the US.'];
                         Twitter.post('statuses/update', {status: '@' + data[i].user.screen_name + ' ' + hellos[Math.floor(Math.random()*hellos.length)] + ', ' + greetings[Math.floor(Math.random()*greetings.length)] + ' Please support these regulations to ensure our Internet is safe and open to all. Please see @fightfortheftr for more info.', in_reply_to_status_id: data[i].id}, function(err, res) {
                             if (err)
                                 {
@@ -153,5 +153,6 @@ var notifyPolitician = function() {
             }
     });
 }
+notifyPolitician();
 
 setInterval(notifyPolitician, 1000*60*30);
