@@ -4,7 +4,7 @@ var Twitter = new Twit(config);
 var express = require('express');
 var app     = express();
 app.set('port', (process.env.PORT || 5000));
-//For avoiding Heroku $PORT error
+// For avoiding Heroku $PORT error
 app.get('/', function(request, response) {
     var result = 'App is running'
     response.send(result);
