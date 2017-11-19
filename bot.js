@@ -26,7 +26,7 @@ app.get('/', function(request, response) {
 
 var retweet = function() {
   var params = {
-    q: '#Puppy, #Dog, #Pupper, #Doggo, #Rarepupper',
+    q: '#Puppy, #Dog',
     result_type: 'recent',
     lang: 'en'    
   };
