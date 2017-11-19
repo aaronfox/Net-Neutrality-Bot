@@ -36,7 +36,7 @@ function tweetStatus(msg) {
 
 //AustinScottGA08
 function follow(list) {
- return (user) => twit.post('friendships/create', { screen_name: list })
+ return (user) => Twitter.post('friendships/create', { screen_name: list })
 };
 
 follow('AustinScottGA08');
