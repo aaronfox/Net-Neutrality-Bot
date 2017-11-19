@@ -9,7 +9,7 @@ var Twitter = new Twit(config);
 
 var retweet = function() {
   var params = {
-    q: '#Dog, #Puppy',
+    q: '#Cow, #Pig',
     result_type: 'recent',
     lang: 'en'    
   };
