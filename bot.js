@@ -75,7 +75,6 @@ var retweet = function() {
                 else if (response) {
                     console.log('Retweeted!!!');
                 }
-                
             });
         }
         // if unable to Search a tweet
@@ -87,12 +86,13 @@ var retweet = function() {
 };
 
 // grab & retweet as soon as program is running...
-retweet();
+//retweet();
 // retweet in every 50 minutes
-setInterval(retweet, 30000);
+//setInterval(retweet, 30000);
 
 var fs = require('fs-extra');
 
+// Follows people based on CSV file
 function csvHandler(){
   fs.readFile('115th-Congress-House-seeds.csv', function (err,data) {
 
@@ -115,5 +115,43 @@ function csvHandler(){
 };
 
 //csvHandler();
-  
-  
+
+// Key = Twitter ID, Value = boolean of replied to last tweet
+var map = new Map();
+//var idArray;
+//Twitter.get('friends/ids', {screen_name: 'NedNuTrality'}, function (err, data, res) {
+//    idArray = data.ids;
+//    console.log(idArray);
+//});
+//console.log('idArray == ' + idArray[0]);
+
+var tweetIdsToReply;
+// Now, get latest tweets from people we follow
+
+var notifyPolitician = function() {
+    Twitter.get('statuses/home_timeline', {count: 5, exclude_replies: true}, function(err, data, res) {
+        for (var i = 0; i < data.length; i++)
+            {
+                if(data[i].user.screen_name != 'NedNuTrality')
+                    {
+    //                    console.log(data[i].id + ' ' + data[i].text);
+                        // REPLY TO POLITICIAN HERE
+                        var hellos = ['Hi', 'Hello', 'Good day'];
+                        var greetings = ['Could I talk to you about net neutrality today? It\s really important to the future of the US.', 'Net Neutrality is one of the most important principles keeping the Internet alive in the US today.', 'I would like to talk about net neutrality and how it\'s vitally important to the US.'];
+                        Twitter.post('statuses/update', {status: '@' + data[i].user.screen_name + ' ' + hellos[Math.floor(Math.random()*hellos.length)] + ', ' + greetings[Math.floor(Math.random()*greetings.length)] + ' Please support these regulations to ensure our Internet is safe and open to all. Please see @fightfortheftr for more info.', in_reply_to_status_id: data[i].id}, function(err, res) {
+                            if (err)
+                                {
+                                    console.log("Error in replying to politician:");
+                                    console.log(err);
+                                }
+                            else{
+                                    console.log('Replied to: politician');
+                            }
+                        } );
+                    }
+
+            }
+    });
+}
+
+setInterval(notifyPolitician, 1000*60*30);
