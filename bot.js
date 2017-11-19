@@ -18,7 +18,7 @@ app.get('/', function(request, response) {
 
 function tweetStatus(msg) {
     var tweet = {
-        status: msg;
+        status: msg
     }
     
     Twitter.post('statuses/update', tweet, tweeted);
